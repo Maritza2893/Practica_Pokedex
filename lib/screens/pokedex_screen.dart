@@ -46,6 +46,28 @@ class _PokedexScreenState extends State<PokedexScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            // Encabezado de bienvenida
+            const Text(
+              'Descubre el mundo Pokémon',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF263238),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            const Text(
+              'Consulta la información de tu Pokémon favorito',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14, color: Colors.grey),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Campo de búsqueda original
             TextField(
               controller: _controlador,
               decoration: const InputDecoration(
@@ -55,6 +77,7 @@ class _PokedexScreenState extends State<PokedexScreen> {
               textInputAction: TextInputAction.search,
               onSubmitted: (_) => _buscar(),
             ),
+
             const SizedBox(height: 12),
             FilledButton(onPressed: _buscar, child: const Text('Buscar')),
             const SizedBox(height: 24),
