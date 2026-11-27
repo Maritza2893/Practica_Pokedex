@@ -31,6 +31,7 @@ class _PokedexScreenState extends State<PokedexScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F6FA),
       appBar: AppBar(title: const Text('Pokédex mínima')),
       body: Padding(
         padding: const EdgeInsets.all(16),
