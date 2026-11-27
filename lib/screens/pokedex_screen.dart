@@ -32,7 +32,16 @@ class _PokedexScreenState extends State<PokedexScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6FA),
-      appBar: AppBar(title: const Text('Pokédex mínima')),
+      appBar: AppBar(
+        title: const Text(
+          'Pokédex',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xFFC62828),
+        foregroundColor: Colors.white,
+      ),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
