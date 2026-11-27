@@ -137,7 +137,23 @@ class _PokedexScreenState extends State<PokedexScreen> {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(
+                                  color: Color(0xFFC62828),
+                                  strokeWidth: 4,
+                                ),
+                                SizedBox(height: 16),
+                                Text(
+                                  'Buscando Pokémon...',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
                         }
 
