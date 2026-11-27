@@ -56,10 +56,41 @@ class _PokedexScreenState extends State<PokedexScreen> {
                   : FutureBuilder<Pokemon>(
                       future: _futuroPokemon,
                       builder: (context, snapshot) {
-                        // INICIO TODO 3
-                        // TODO 3: mostrar carga, error y éxito
-                        return const Center(child: Text('TODO 3'));
-                        // FIN TODO 3
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.hasError) {
+                          return Center(child: Text('${snapshot.error}'));
+                        }
+                        final pokemon = snapshot.data!;
+
+                        return Column(
+                          children: [
+                            Image.network(pokemon.imagen, height: 180),
+                            Text(
+                              '#${pokemon.id} - ${pokemon.nombre}',
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Wrap(
+                              spacing: 8,
+                              children: pokemon.tipos
+                                  .map((tipo) => Chip(label: Text(tipo)))
+                                  .toList(),
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              'Altura: ${pokemon.altura.toStringAsFixed(1)} m',
+                            ),
+                            Text('Peso: ${pokemon.peso.toStringAsFixed(1)} kg'),
+                          ],
+                        );
                       },
                     ),
             ),
