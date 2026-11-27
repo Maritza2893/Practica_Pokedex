@@ -94,12 +94,24 @@ class _PokedexScreenState extends State<PokedexScreen> {
                                 ),
                                 const SizedBox(height: 16),
                                 Text(
-                                  '#${pokemon.id} - ${pokemon.nombre}',
+                                  '#${pokemon.id.toString().padLeft(3, '0')}',
                                   style: const TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.grey,
                                   ),
                                 ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  pokemon.nombre.toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF263238),
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
                                 Wrap(
                                   spacing: 8,
                                   children: pokemon.tipos
