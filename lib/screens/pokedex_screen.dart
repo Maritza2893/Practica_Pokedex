@@ -178,94 +178,111 @@ class _PokedexScreenState extends State<PokedexScreen> {
                         }
                         final pokemon = snapshot.data!;
 
-                        return Card(
-                          color: Colors.white,
-                          elevation: 4,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  width: 180,
-                                  height: 180,
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFFF5F6FA),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.network(
-                                    pokemon.imagen,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  '#${pokemon.id.toString().padLeft(3, '0')}',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  pokemon.nombre.toUpperCase(),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF263238),
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                Wrap(
-                                  spacing: 8,
-                                  runSpacing: 8,
-                                  alignment: WrapAlignment.center,
-                                  children: pokemon.tipos.map((tipo) {
-                                    return Chip(
-                                      label: Text(
-                                        tipo.toUpperCase(),
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF263238),
-                                        ),
-                                      ),
-                                      backgroundColor: _colorTipo(tipo),
-                                      side: BorderSide.none,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    );
-                                  }).toList(),
-                                ),
-                                const SizedBox(height: 12),
-                                const Divider(),
-                                const SizedBox(height: 12),
-                                Row(
+                        return SingleChildScrollView(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Card(
+                              color: Colors.white,
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Expanded(
-                                      child: _datoPokemon(
-                                        Icons.straighten,
-                                        'Altura',
-                                        '${pokemon.altura.toStringAsFixed(1)} m',
+                                    Container(
+                                      width: 180,
+                                      height: 180,
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFFF5F6FA),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        pokemon.imagen,
+                                        fit: BoxFit.contain,
                                       ),
                                     ),
-                                    const SizedBox(width: 12),
-                                    Expanded(
-                                      child: _datoPokemon(
-                                        Icons.monitor_weight_outlined,
-                                        'Peso',
-                                        '${pokemon.peso.toStringAsFixed(1)} kg',
+                                    const SizedBox(height: 16),
+                                    Text(
+                                      '#${pokemon.id.toString().padLeft(3, '0')}',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      pokemon.nombre.toUpperCase(),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF263238),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 12),
+                                    Wrap(
+                                      spacing: 8,
+                                      runSpacing: 8,
+                                      alignment: WrapAlignment.center,
+                                      children: pokemon.tipos.map((tipo) {
+                                        return Chip(
+                                          label: Text(
+                                            tipo.toUpperCase(),
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xFF263238),
+                                            ),
+                                          ),
+                                          backgroundColor: _colorTipo(tipo),
+                                          side: BorderSide.none,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              20,
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                    ),
+                                    const SizedBox(height: 12),
+                                    const Divider(),
+                                    const SizedBox(height: 12),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: _datoPokemon(
+                                            Icons.straighten,
+                                            'Altura',
+                                            '${pokemon.altura.toStringAsFixed(1)} m',
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          child: _datoPokemon(
+                                            Icons.monitor_weight_outlined,
+                                            'Peso',
+                                            '${pokemon.peso.toStringAsFixed(1)} kg',
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 20),
+                                    const Text(
+                                      'Información proporcionada por PokéAPI',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
                                       ),
                                     ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         );
