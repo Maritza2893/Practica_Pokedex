@@ -79,7 +79,20 @@ class _PokedexScreenState extends State<PokedexScreen> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Image.network(pokemon.imagen, height: 180),
+                                Container(
+                                  width: 180,
+                                  height: 180,
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFFF5F6FA),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.network(
+                                    pokemon.imagen,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
                                 Text(
                                   '#${pokemon.id} - ${pokemon.nombre}',
                                   style: const TextStyle(
