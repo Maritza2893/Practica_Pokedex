@@ -31,27 +31,105 @@ class _PokedexScreenState extends State<PokedexScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pokédex mínima')),
+      backgroundColor: const Color(0xFFF5F6FA),
+      appBar: AppBar(
+        title: const Text(
+          'Pokédex',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xFFC62828),
+        foregroundColor: Colors.white,
+      ),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            // Encabezado de bienvenida
+            const Text(
+              'Descubre el mundo Pokémon',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF263238),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            const Text(
+              'Consulta la información de tu Pokémon favorito',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14, color: Colors.grey),
+            ),
+
+            const SizedBox(height: 20),
             TextField(
               controller: _controlador,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Nombre o número del Pokémon',
-                border: OutlineInputBorder(),
+
+                // Icono de búsqueda
+                prefixIcon: const Icon(Icons.search, color: Color(0xFFC62828)),
+
+                // Texto de ejemplo
+                hintText: 'Ejemplo: Pikachu o 25',
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
               textInputAction: TextInputAction.search,
               onSubmitted: (_) => _buscar(),
             ),
-            const SizedBox(height: 12),
-            FilledButton(onPressed: _buscar, child: const Text('Buscar')),
-            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: FilledButton.icon(
+                onPressed: _buscar,
+                icon: const Icon(Icons.search),
+                label: const Text(
+                  'Buscar Pokémon',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFFC62828),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: _futuroPokemon == null
                   ? const Center(
-                      child: Text('Escribe un nombre y presiona Buscar'),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.catching_pokemon,
+                            size: 90,
+                            color: Color(0xFFBDBDBD),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Encuentra tu Pokémon',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Escribe su nombre o número para comenzar',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.grey, fontSize: 14),
+                          ),
+                        ],
+                      ),
                     )
                   : FutureBuilder<Pokemon>(
                       future: _futuroPokemon,
@@ -59,7 +137,23 @@ class _PokedexScreenState extends State<PokedexScreen> {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(
+                                  color: Color(0xFFC62828),
+                                  strokeWidth: 4,
+                                ),
+                                SizedBox(height: 16),
+                                Text(
+                                  'Buscando Pokémon...',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
                         }
 
