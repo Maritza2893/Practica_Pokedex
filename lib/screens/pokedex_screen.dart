@@ -28,6 +28,49 @@ class _PokedexScreenState extends State<PokedexScreen> {
     super.dispose();
   }
 
+  Color _colorTipo(String tipo) {
+    switch (tipo) {
+      case 'electric':
+        return const Color(0xFFFFE082);
+      case 'fire':
+        return const Color(0xFFFFAB91);
+      case 'water':
+        return const Color(0xFF90CAF9);
+      case 'grass':
+        return const Color(0xFFA5D6A7);
+      case 'poison':
+        return const Color(0xFFCE93D8);
+      case 'flying':
+        return const Color(0xFFB39DDB);
+      case 'normal':
+        return const Color(0xFFE0E0E0);
+      case 'bug':
+        return const Color(0xFFDCE775);
+      case 'ground':
+        return const Color(0xFFD7CCC8);
+      case 'ice':
+        return const Color(0xFF80DEEA);
+      case 'psychic':
+        return const Color(0xFFF48FB1);
+      case 'fighting':
+        return const Color(0xFFEF9A9A);
+      case 'rock':
+        return const Color(0xFFBCAAA4);
+      case 'ghost':
+        return const Color(0xFFB39DDB);
+      case 'dragon':
+        return const Color(0xFF9FA8DA);
+      case 'dark':
+        return const Color(0xFFA1887F);
+      case 'steel':
+        return const Color(0xFFB0BEC5);
+      case 'fairy':
+        return const Color(0xFFF8BBD0);
+      default:
+        return Colors.grey.shade200;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,9 +157,24 @@ class _PokedexScreenState extends State<PokedexScreen> {
                                 const SizedBox(height: 12),
                                 Wrap(
                                   spacing: 8,
-                                  children: pokemon.tipos
-                                      .map((tipo) => Chip(label: Text(tipo)))
-                                      .toList(),
+                                  runSpacing: 8,
+                                  alignment: WrapAlignment.center,
+                                  children: pokemon.tipos.map((tipo) {
+                                    return Chip(
+                                      label: Text(
+                                        tipo.toUpperCase(),
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF263238),
+                                        ),
+                                      ),
+                                      backgroundColor: _colorTipo(tipo),
+                                      side: BorderSide.none,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    );
+                                  }).toList(),
                                 ),
                                 const SizedBox(height: 12),
                                 Text(
