@@ -106,7 +106,30 @@ class _PokedexScreenState extends State<PokedexScreen> {
             Expanded(
               child: _futuroPokemon == null
                   ? const Center(
-                      child: Text('Escribe un nombre y presiona Buscar'),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.catching_pokemon,
+                            size: 90,
+                            color: Color(0xFFBDBDBD),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Encuentra tu Pokémon',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Escribe su nombre o número para comenzar',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.grey, fontSize: 14),
+                          ),
+                        ],
+                      ),
                     )
                   : FutureBuilder<Pokemon>(
                       future: _futuroPokemon,
