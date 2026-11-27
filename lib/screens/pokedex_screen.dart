@@ -71,6 +71,31 @@ class _PokedexScreenState extends State<PokedexScreen> {
     }
   }
 
+  Widget _datoPokemon(IconData icono, String titulo, String valor) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF5F6FA),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        children: [
+          Icon(icono, size: 30, color: const Color(0xFFC62828)),
+          const SizedBox(height: 8),
+          Text(
+            titulo,
+            style: const TextStyle(color: Colors.grey, fontSize: 14),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            valor,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,11 +202,26 @@ class _PokedexScreenState extends State<PokedexScreen> {
                                   }).toList(),
                                 ),
                                 const SizedBox(height: 12),
-                                Text(
-                                  'Altura: ${pokemon.altura.toStringAsFixed(1)} m',
-                                ),
-                                Text(
-                                  'Peso: ${pokemon.peso.toStringAsFixed(1)} kg',
+                                const Divider(),
+                                const SizedBox(height: 12),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: _datoPokemon(
+                                        Icons.straighten,
+                                        'Altura',
+                                        '${pokemon.altura.toStringAsFixed(1)} m',
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: _datoPokemon(
+                                        Icons.monitor_weight_outlined,
+                                        'Peso',
+                                        '${pokemon.peso.toStringAsFixed(1)} kg',
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
