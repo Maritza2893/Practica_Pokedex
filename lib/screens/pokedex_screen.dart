@@ -68,28 +68,41 @@ class _PokedexScreenState extends State<PokedexScreen> {
                         }
                         final pokemon = snapshot.data!;
 
-                        return Column(
-                          children: [
-                            Image.network(pokemon.imagen, height: 180),
-                            Text(
-                              '#${pokemon.id} - ${pokemon.nombre}',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
+                        return Card(
+                          color: Colors.white,
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Image.network(pokemon.imagen, height: 180),
+                                Text(
+                                  '#${pokemon.id} - ${pokemon.nombre}',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Wrap(
+                                  spacing: 8,
+                                  children: pokemon.tipos
+                                      .map((tipo) => Chip(label: Text(tipo)))
+                                      .toList(),
+                                ),
+                                const SizedBox(height: 12),
+                                Text(
+                                  'Altura: ${pokemon.altura.toStringAsFixed(1)} m',
+                                ),
+                                Text(
+                                  'Peso: ${pokemon.peso.toStringAsFixed(1)} kg',
+                                ),
+                              ],
                             ),
-                            Wrap(
-                              spacing: 8,
-                              children: pokemon.tipos
-                                  .map((tipo) => Chip(label: Text(tipo)))
-                                  .toList(),
-                            ),
-                            const SizedBox(height: 12),
-                            Text(
-                              'Altura: ${pokemon.altura.toStringAsFixed(1)} m',
-                            ),
-                            Text('Peso: ${pokemon.peso.toStringAsFixed(1)} kg'),
-                          ],
+                          ),
                         );
                       },
                     ),
