@@ -84,10 +84,25 @@ class _PokedexScreenState extends State<PokedexScreen> {
               textInputAction: TextInputAction.search,
               onSubmitted: (_) => _buscar(),
             ),
-
-            const SizedBox(height: 12),
-            FilledButton(onPressed: _buscar, child: const Text('Buscar')),
-            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: FilledButton.icon(
+                onPressed: _buscar,
+                icon: const Icon(Icons.search),
+                label: const Text(
+                  'Buscar Pokémon',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFFC62828),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: _futuroPokemon == null
                   ? const Center(
