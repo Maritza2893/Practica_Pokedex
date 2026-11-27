@@ -132,7 +132,49 @@ class _PokedexScreenState extends State<PokedexScreen> {
                         }
 
                         if (snapshot.hasError) {
-                          return Center(child: Text('${snapshot.error}'));
+                          return Center(
+                            child: Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(24),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFFEBEE),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.error_outline,
+                                    color: Color(0xFFC62828),
+                                    size: 65,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  const Text(
+                                    'Error de búsqueda',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFC62828),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    '${snapshot.error}'.replaceFirst(
+                                      'Exception: ',
+                                      '',
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 8),
+                                  const Text(
+                                    'Verifica los datos o tu conexión a internet.',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
                         }
                         final pokemon = snapshot.data!;
 
