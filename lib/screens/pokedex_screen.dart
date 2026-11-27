@@ -70,21 +70,15 @@ class _PokedexScreenState extends State<PokedexScreen> {
               controller: _controlador,
               decoration: InputDecoration(
                 labelText: 'Nombre o número del Pokémon',
-                filled: true,
-                fillColor: Colors.white,
+
+                // Icono de búsqueda
+                prefixIcon: const Icon(Icons.search, color: Color(0xFFC62828)),
+
+                // Texto de ejemplo
+                hintText: 'Ejemplo: Pikachu o 25',
+
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Color(0xFFDDDDDD)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(
-                    color: Color(0xFFC62828),
-                    width: 2,
-                  ),
                 ),
               ),
               textInputAction: TextInputAction.search,
