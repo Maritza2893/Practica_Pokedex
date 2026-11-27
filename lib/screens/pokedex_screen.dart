@@ -66,13 +66,26 @@ class _PokedexScreenState extends State<PokedexScreen> {
             ),
 
             const SizedBox(height: 20),
-
-            // Campo de búsqueda original
             TextField(
               controller: _controlador,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Nombre o número del Pokémon',
-                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: const BorderSide(color: Color(0xFFDDDDDD)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: const BorderSide(
+                    color: Color(0xFFC62828),
+                    width: 2,
+                  ),
+                ),
               ),
               textInputAction: TextInputAction.search,
               onSubmitted: (_) => _buscar(),
